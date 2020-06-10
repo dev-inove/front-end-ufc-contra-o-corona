@@ -79,7 +79,7 @@ export default {
         display: flex;
         align-self: center;
         width: 80rem;
-        margin-bottom: 4rem;
+        margin-bottom: 5rem;
     }
 }
 </style>
