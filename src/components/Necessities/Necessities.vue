@@ -1,0 +1,29 @@
+<template>
+    <div class="necessities pad-1">
+        <SectionTitle title="Nossas Necessidades">
+            Seção destinada aos materiais, produtos, serviços ou insumos necessários
+            <br />para que as ações sejam feitas.
+        </SectionTitle>
+        <Carrousel :itemsQuantity="2">
+            <NecessityCard v-for="item in items" :key="item" />
+        </Carrousel>
+    </div>
+</template>
+
+<script>
+import Carrousel from '../Carrousel/Carrousel.vue'
+import SectionTitle from '../Actions/SectionTitle.vue'
+import NecessityCard from './NecessityCard.vue'
+
+export default {
+    components: { SectionTitle, Carrousel, NecessityCard },
+    data() {
+        return {
+            items: [1, 2]
+        }
+    }
+}
+</script>
+
+<style>
+</style>

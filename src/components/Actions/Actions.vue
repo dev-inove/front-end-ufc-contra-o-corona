@@ -6,21 +6,22 @@
             <br />com o enfrentamento aos danos
             causados pelo novo coronavírus (COVID-19)
         </SectionTitle>
-        <div class="card-container">
-            <ActionCard class="action-card" v-for="i in a" :key="i" />
-        </div>
+        <Carrousel :itemsQuantity="items.length">
+            <ActionCard v-for="item in items" :key="item" />
+        </Carrousel>
     </div>
 </template>
 
 <script>
+import Carrousel from '../Carrousel/Carrousel.vue'
 import SectionTitle from './SectionTitle.vue'
 import ActionCard from './ActionCard.vue'
 
 export default {
-    components: { SectionTitle, ActionCard },
+    components: { Carrousel, SectionTitle, ActionCard },
     data() {
         return {
-            a: [1, 2, 3]
+            items: [1, 2, 3, 4]
         }
     }
 }
@@ -30,11 +31,6 @@ export default {
 .actions {
     background-color: #fff;
     /* min-height: 70vh; */
-}
-
-.card-container {
-    display: flex;
-    margin-bottom: 8rem;
 }
 
 .action-card {

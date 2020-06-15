@@ -69,6 +69,12 @@ export default {}
 
             cursor: pointer;
             outline: none;
+
+            transition: 0.2s ease-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
         }
 
         a {

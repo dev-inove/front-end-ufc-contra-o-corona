@@ -66,12 +66,20 @@ export default {
             line-height: 7.5rem;
             text-transform: uppercase;
             margin-bottom: 1rem;
+
+            animation-name: fadeIn;
+            animation-duration: 1s;
+            animation-timing-function: ease-in;
         }
 
         h2 {
             font-family: 'Merriweather';
             font-weight: 400;
             font-size: 1.8rem;
+
+            animation-name: fadeIn;
+            animation-duration: 1s;
+            animation-timing-function: ease-in;
         }
     }
 
