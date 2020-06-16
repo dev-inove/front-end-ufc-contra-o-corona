@@ -12,7 +12,7 @@
         </div>
         <div class="auth__login">
             <SectionTitle title="Login">
-                Área restrita aos administradores.
+                Faça login para gerenciar ações.
             </SectionTitle>
 
             <div>
@@ -21,15 +21,28 @@
                     type="email"
                     placeholder="Digite seu e-mail"
                 />
+
+                <svg class="input-icon email">
+                    <use xlink:href="@/assets/svg/sprites.svg#user" />
+                </svg>
+
                 <input
                     class="auth__login--password"
                     type="password"
                     placeholder="Digite sua senha"
                 />
 
+                <svg class="input-icon password">
+                    <use xlink:href="@/assets/svg/sprites.svg#invisible" />
+                </svg>
+
                 <div class="login-options">
                     <span class="remember-me">
-                        <input type="checkbox" name="remember-me" />
+                        <input
+                            type="checkbox"
+                            name="remember-me"
+                            id="remember-me"
+                        />
                         <label for="remember-me">Lembrar de mim</label>
                     </span>
 
@@ -46,7 +59,6 @@
 
 <script>
 import SectionTitle from '../components/Actions/SectionTitle'
-// import
 
 export default {
     name: 'Auth',
@@ -55,6 +67,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.input-icon {
+    position: relative;
+    fill: rgba($black, 0.45);
+    width: 1.8rem;
+    height: 1.8rem;
+
+    &.email {
+        bottom: 3.8rem;
+        left: 32rem;
+    }
+
+    &.password {
+        bottom: 3.8rem;
+        left: 32rem;
+    }
+}
+
 .auth {
     display: grid;
     grid-template-columns: 60% 1fr;
@@ -69,7 +98,7 @@ export default {
             justify-content: space-between;
             font-size: 1.4rem;
             font-weight: 500;
-            margin: 1rem 0;
+            margin-top: 2rem;
         }
 
         .remember-me {
