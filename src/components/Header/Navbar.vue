@@ -1,7 +1,16 @@
 <template>
-    <nav class="navbar pad-sm">
+    <nav
+        class="navbar pad-sm"
+        :theme="this.$store.state.dark ? 'dark' : 'light'"
+    >
         <img
+            v-if="!this.$store.state.dark"
             src="@/assets/svg/logo_purple.svg"
+            alt="logo-combate-ao-covid-19"
+        />
+        <img
+            v-else
+            src="@/assets/svg/logo_white.svg"
             alt="logo-combate-ao-covid-19"
         />
         <ul class="navbar__list">
@@ -19,15 +28,47 @@
 </template>
 
 <script>
-export default {}
+export default {
+    computed: {}
+}
 </script>
 
 <style lang="scss" scoped>
+/* Color Variables & Theme Definitions */
+[theme*='light'] {
+    --nav-bg: var(--white-1);
+
+    --li: var(--black-4);
+    --li-hover: var(--black-3);
+    --li-selected: var(--black-2);
+
+    --sign-up: var(--primary-purple);
+
+    --menu-border: var(--black-6);
+}
+
+[theme*='dark'] {
+    --nav-bg: var(--grey-3);
+
+    --li: var(--white-1);
+    --li-hover: var(--white-1);
+    --li-selected: var(--white-1);
+
+    --sign-up: var(--white-1);
+
+    --menu-border: var(--white-1);
+}
+
+* {
+    transition: 0.2s ease-out;
+}
+
+/* Elements styling */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: $white;
+    background-color: var(--nav-bg);
     height: 7rem;
 
     &__list {
@@ -36,21 +77,21 @@ export default {}
         justify-content: flex-end;
         list-style-type: none;
 
-        border-right: 1px solid rgba($black, 0.25);
+        border-right: 1px solid var(--menu-border);
 
         li {
             font-size: 1.6rem;
-            color: rgba($black, 0.6);
+            color: var(--li);
 
             margin: 0 2.5rem;
             cursor: pointer;
 
             &:hover {
-                color: rgba($black, 0.8);
+                color: var(--li-hover);
             }
 
             &.active {
-                color: rgba($black, 0.87);
+                color: var(--li-selected);
                 font-weight: 700;
             }
         }
@@ -58,8 +99,8 @@ export default {}
 
     &__actions {
         button {
-            background-color: $primary-purple;
-            color: $white;
+            background-color: var(--primary-purple);
+            color: var(--white-1);
 
             font-size: 1.4rem;
             font-weight: 500;
@@ -81,7 +122,7 @@ export default {}
         }
 
         a {
-            color: $primary-purple;
+            color: var(--sign-up);
 
             font-size: 1.4rem;
             font-weight: 500;

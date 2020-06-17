@@ -1,5 +1,8 @@
 <template>
-    <div class="section-title">
+    <div
+        class="section-title"
+        :theme="this.$store.state.dark ? 'dark' : 'light'"
+    >
         <h1 class="section-title__main">{{ title }}</h1>
         <h2 class="section-title__sub">
             <slot></slot>
@@ -16,6 +19,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* Color Variables & Theme Definitions */
+[theme*='light'] {
+    --title-color: var(--black-2);
+}
+
+[theme*='dark'] {
+    --title-color: var(--white-1);
+}
+
+* {
+    transition: 0.2s ease-out;
+}
+
 .section-title {
     margin: 5rem 0;
 
@@ -24,7 +40,7 @@ export default {
         font-size: 3.6rem;
         margin-bottom: 0.2rem;
 
-        color: rgba($black, 0.87);
+        color: var(--title-color);
     }
 
     &__sub {

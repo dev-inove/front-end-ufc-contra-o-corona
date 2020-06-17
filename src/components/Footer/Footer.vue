@@ -1,12 +1,21 @@
 <template>
-    <footer class="footer pad-sm">
+    <footer
+        class="footer pad-sm"
+        :theme="this.$store.state.dark ? 'dark' : 'light'"
+    >
         <div>
-            <span></span>
             <img
+                v-if="!this.$store.state.dark"
                 class="footer__logo"
                 src="../../assets/img/logo_ufc_horizontal.png"
                 alt="ufc-logo"
             />
+            <!-- <img
+                v-else
+                class="footer__logo"
+                src="../../assets/img/logo_ufc_horizontal.png"
+                alt="ufc-logo"
+            /> -->
             <div class="footer__social">
                 Midias Sociais
                 <hr />
@@ -130,10 +139,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* Color Variables & Theme Definitions */
+[theme*='light'] {
+    --footer-bg: var(--light-grey-1);
+
+    --hr: var(--black-7);
+    --social: var(--black-2);
+    --social-icons: var(--black-5);
+
+    --footer-legal: var(--black-5);
+
+    --contact-bg: var(--white-1);
+
+    --location-title: var(--black-4);
+    --location-header: var(--black-3);
+    --location-sub: var(--black-5);
+    --location-icons: var(--black-5);
+}
+
+[theme*='dark'] {
+    --footer-bg: var(--grey-3);
+
+    --hr: var(--white-1);
+    --social: var(--white-1);
+    --social-icons: var(--white-2);
+
+    --footer-legal: var(--white-3);
+
+    --contact-bg: var(--grey-2);
+
+    --location-title: var(--white-1);
+    --location-header: var(--white-1);
+    --location-sub: var(--white-1);
+    --location-icons: var(--white-3);
+}
+
+* {
+    transition: 0.2s ease-out;
+}
+
+/* Elements Styling */
 .footer {
     display: flex;
     justify-content: space-between;
-    background-color: #eeeeee;
+    background-color: var(--footer-bg);
     padding-top: 3rem;
     padding-bottom: 2rem;
     margin-top: 15rem;
@@ -144,17 +193,17 @@ export default {
         font-size: 1.4rem;
         font-weight: 500;
         text-transform: uppercase;
-        color: rgba($black, 0.87);
+        color: var(--social);
 
         margin: 2rem 0;
 
         hr {
-            background: rgba($black, 0.2);
+            background: var(--hr);
             margin-top: 0.2rem;
         }
 
         &--icon {
-            fill: rgba($black, 0.45);
+            fill: var(--social-icons);
             margin: 1rem;
             height: 2.4rem;
             width: 2.4rem;
@@ -168,7 +217,7 @@ export default {
     &__legal {
         font-size: 1.8rem;
         line-height: 2rem;
-        color: rgba($black, 0.45);
+        color: var(--footer-legal);
     }
 
     &__contact {
@@ -181,7 +230,7 @@ export default {
         height: 35.5rem;
         position: relative;
         top: -10rem;
-        background-color: #fff;
+        background-color: var(--contact-bg);
         border-radius: 1.5rem;
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
 
@@ -192,14 +241,14 @@ export default {
             h1 {
                 font-size: 2.4rem;
                 font-weight: 700;
-                color: rgba($black, 0.6);
+                color: var(--location-title);
                 margin: 1rem 2rem;
             }
 
             svg {
                 height: 2rem;
                 width: 2rem;
-                fill: rgba($black, 0.45);
+                fill: var(--location-sub);
                 cursor: pointer;
 
                 &.left-arrow {
@@ -216,12 +265,12 @@ export default {
 
             &--text {
                 font-size: 1.8rem;
-                color: rgba($black, 0.6);
+                color: var(--location-sub);
 
                 h2 {
                     font-size: 1.8rem;
                     font-weight: 500;
-                    color: rgba($black, 0.8);
+                    color: var(--location-header);
                 }
             }
 
@@ -231,7 +280,7 @@ export default {
             }
 
             &--icon {
-                fill: rgba($black, 0.45);
+                fill: var(--location-icons);
                 margin: 3rem;
                 height: 2rem;
                 width: 2rem;

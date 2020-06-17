@@ -1,18 +1,42 @@
 <template>
-    <div class="switch">
+    <div class="switch" :theme="this.$store.state.dark ? 'dark' : 'light'">
         Modo Leitura
         <label class="switch-light">
-            <input type="checkbox" />
+            <input type="checkbox" v-model="dark" />
             <span class="slider round"></span>
         </label>
     </div>
 </template>
 
 <script>
-export default {}
+export default {
+    computed: {
+        dark: {
+            get() {
+                return this.$store.state.dark
+            },
+            set(value) {
+                this.$store.commit('changeTheme', value)
+            }
+        }
+    }
+}
 </script>
 
 <style lang="scss">
+/* Color Variables & Theme Definitions */
+[theme*='light'] {
+    --text: var(--black-4);
+}
+
+[theme*='dark'] {
+    --text: var(--white-1);
+}
+
+* {
+    transition: 0.2s ease-out;
+}
+
 .switch {
     display: flex;
     align-items: center;
@@ -23,6 +47,8 @@ export default {}
     text-transform: uppercase;
     font-size: 1.6rem;
     font-weight: 400;
+
+    color: var(--text);
 }
 
 /* The switch - the box around the slider */

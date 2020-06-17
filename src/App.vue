@@ -1,5 +1,12 @@
 <template>
-    <div id="app">
+    <div
+        id="app"
+        :style="
+            this.$store.state.dark
+                ? 'background-color: var(--grey-1);'
+                : 'background-color: var(--white-1);'
+        "
+    >
         <router-view></router-view>
     </div>
 </template>

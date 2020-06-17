@@ -1,13 +1,30 @@
-// Colors
+// Colors are defined in ::root, using the rgb parameters
 :root {
-    --primary-purple: #66288e;
+    --black-1: rgba(0, 0, 0, 1);
+    --black-2: rgba(0, 0, 0, 0.87);
+    --black-3: rgba(0, 0, 0, 0.8);
+    --black-4: rgba(0, 0, 0, 0.6);
+    --black-5: rgba(0, 0, 0, 0.45);
+    --black-6: rgba(0, 0, 0, 0.25);
+    --black-7: rgba(0, 0, 0, 0.2);
 
-    --white: #fff;
-    --black: #000;
+    --white-1: rgba(255, 255, 255, 1);
+    --white-2: rgba(255, 255, 255, 0.87);
+    --white-3: rgba(255, 255, 255, 0.6);
+
+    --primary-purple: rgba(102, 40, 142, 1);
+
+    --grey-1: rgba(31, 31, 31, 1);
+    --grey-2: rgba(31, 31, 31, 1);
+    --grey-3: rgb(36, 36, 36);
+
+    --light-grey-1: rgba(238, 238, 238, 1);
 }
 
 // SCSS Variables
 $black: #000;
 $white: #fff;
 
-$primary-purple: #66288e;
+$background-dark: rgb(31, 31, 31);
+
+$primary-purple: rgb(102, 40, 142);
