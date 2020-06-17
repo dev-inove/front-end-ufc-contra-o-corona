@@ -1,10 +1,10 @@
 <template>
-    <div class="actions pad-1">
+    <div class="actions pad-sm">
         <SectionTitle title="Nossas Ações">
-            Seção destinada as ações realizadas pela UFC e
-            por pessoas externas para
-            <br />com o enfrentamento aos danos
-            causados pelo novo coronavírus (COVID-19)
+            Seção destinada as ações realizadas pela UFC e por pessoas
+            externas para
+            <br />com o enfrentamento aos danos causados pelo novo
+            coronavírus (COVID-19)
         </SectionTitle>
         <Carrousel :itemsQuantity="items.length">
             <ActionCard v-for="item in items" :key="item" />
@@ -14,7 +14,7 @@
 
 <script>
 import Carrousel from '../Carrousel/Carrousel.vue'
-import SectionTitle from './SectionTitle.vue'
+import SectionTitle from '../utils/SectionTitle.vue'
 import ActionCard from './ActionCard.vue'
 
 export default {

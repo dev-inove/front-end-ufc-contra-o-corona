@@ -1,14 +1,14 @@
 <template>
     <header class="header">
         <Navbar />
-        <div class="header__title pad-1">
+        <div class="header__title pad-sm">
             <h1>
                 UFC Contra
                 <br />o Coronavírus
             </h1>
             <h2>
-                Confira os principais destaques quanto as ações promovidas pela
-                UFC em combate ao Coronavírus no estado do Ceará.
+                Confira os principais destaques quanto as ações promovidas
+                pela UFC em combate ao Coronavírus no estado do Ceará.
             </h2>
         </div>
         <div class="header__info">

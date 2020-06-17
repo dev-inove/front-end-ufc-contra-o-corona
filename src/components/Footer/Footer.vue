@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer pad-1">
+    <footer class="footer pad-sm">
         <div>
             <span></span>
             <img

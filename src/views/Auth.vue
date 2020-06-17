@@ -11,9 +11,9 @@
             </svg>
         </div>
         <div class="auth__login">
-            <SectionTitle title="Login">
-                Faça login para gerenciar ações.
-            </SectionTitle>
+            <SectionTitle title="Login"
+                >Faça login para gerenciar ações.</SectionTitle
+            >
 
             <div>
                 <input
@@ -46,9 +46,9 @@
                         <label for="remember-me">Lembrar de mim</label>
                     </span>
 
-                    <span class="forgot-password">
-                        Esqueci minha senha
-                    </span>
+                    <span class="forgot-password"
+                        >Esqueci minha senha</span
+                    >
                 </div>
 
                 <button>Entrar</button>
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import SectionTitle from '../components/Actions/SectionTitle'
+import SectionTitle from '../components/utils/SectionTitle.vue'
 
 export default {
     name: 'Auth',
@@ -74,12 +74,12 @@ export default {
     height: 1.8rem;
 
     &.email {
-        bottom: 3.8rem;
+        bottom: 2.8rem;
         left: 32rem;
     }
 
     &.password {
-        bottom: 3.8rem;
+        bottom: 2.8rem;
         left: 32rem;
     }
 }
@@ -124,7 +124,7 @@ export default {
             height: 4rem;
             border-radius: 0.7rem;
             background-color: #f5f5f5;
-            margin: 1rem 0;
+            margin: 0;
             padding: 0 1rem;
             width: 100%;
         }
@@ -143,6 +143,7 @@ export default {
 
             color: $white;
             background-color: #2f80ed;
+            cursor: pointer;
         }
 
         &--email {

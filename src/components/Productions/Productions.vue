@@ -1,8 +1,8 @@
 <template>
-    <div class="productions pad-1">
+    <div class="productions pad-sm">
         <SectionTitle title="Produções em Números">
-            Seção destinada aos resultados numéricos de
-            todos os produtos que foram ou estão
+            Seção destinada aos resultados numéricos de todos os produtos
+            que foram ou estão
             <br />sendo produzidos para distribuição da população
         </SectionTitle>
         <!-- <Carrousel>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import SectionTitle from '../Actions/SectionTitle.vue'
+import SectionTitle from '../utils/SectionTitle.vue'
 // import Carrousel from '../Carrousel/Carrousel.vue'
 // import ProductionCard from './ProductionCard.vue'
 

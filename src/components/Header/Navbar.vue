@@ -1,6 +1,9 @@
 <template>
-    <nav class="navbar pad-1">
-        <img src="@/assets/svg/logo_purple.svg" alt="logo-combate-ao-covid-19" />
+    <nav class="navbar pad-sm">
+        <img
+            src="@/assets/svg/logo_purple.svg"
+            alt="logo-combate-ao-covid-19"
+        />
         <ul class="navbar__list">
             <li class="active">Home</li>
             <li>Ações</li>
