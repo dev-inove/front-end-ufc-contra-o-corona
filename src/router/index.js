@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Auth from '../views/Auth.vue'
 import NecessityPage from '../components/Necessities/NecessityPage.vue'
 import ActionPage from '../components/Actions/ActionPage.vue'
+import AdminPages from '../components/Admin/AdminPages.vue'
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,11 @@ const routes = [
         name: 'Home',
         path: '/',
         component: Home
+    },
+    {
+        name: 'AdminPages',
+        path: '/admin',
+        component: AdminPages
     },
     {
         name: 'actionPage',

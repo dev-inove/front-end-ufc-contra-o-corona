@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="action-page"
-        :theme="this.$store.state.dark ? 'dark' : 'light'"
-    >
+    <div class="action-page" :theme="this.$store.state.dark ? 'dark' : 'light'">
         <Navbar />
         <div class="post pad-sm">
             <h1 class="post__title">Confecções de Máscaras</h1>
@@ -19,24 +16,16 @@
                 </div>
                 <div class="post__info--social">
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#facebook-1"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#facebook-1" />
                     </svg>
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#twitter-1"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#twitter-1" />
                     </svg>
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#whatsapp"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#whatsapp" />
                     </svg>
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#pinterest"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#pinterest" />
                     </svg>
                 </div>
             </div>
@@ -58,10 +47,8 @@
                 década de 60, quando a Letraset lançou decalques contendo
                 passagens de Lorem Ipsum, e mais recentemente quando passou
                 a ser integrado a softwares de editoração eletrônica.
-
                 <br />
-                <br />
-                Ao contrário do que se acredita, Lorem Ipsum não é
+                <br />Ao contrário do que se acredita, Lorem Ipsum não é
                 simplesmente um texto randômico. Com mais de 2000 anos,
                 suas raízes podem ser encontradas em uma obra de literatura
                 latina clássica datada de 45 AC. Richard McClintock, um
@@ -71,6 +58,11 @@
             </div>
 
             <SectionTitle title="Recomendadas para você"></SectionTitle>
+            <div class="post__recommended">
+                <ActionCard />
+                <ActionCard />
+                <ActionCard />
+            </div>
         </div>
         <Footer />
     </div>
@@ -81,6 +73,7 @@ import Navbar from '../Header/Navbar.vue'
 import SectionTitle from '../utils/SectionTitle.vue'
 import SwitchLight from '../utils/SwitchLight.vue'
 import Footer from '../Footer/Footer.vue'
+import ActionCard from './ActionCard.vue'
 
 // titulo
 // subtitulo
@@ -93,7 +86,8 @@ export default {
         Navbar,
         SectionTitle,
         SwitchLight,
-        Footer
+        Footer,
+        ActionCard
     }
 }
 </script>
@@ -182,6 +176,10 @@ export default {
         font-family: 'Merriweather', sans-serif;
         font-size: 1.8rem;
         color: var(--content);
+    }
+
+    &__recommended {
+        display: flex;
     }
 }
 </style>

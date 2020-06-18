@@ -1,5 +1,5 @@
 <template>
-    <div class="action-card">
+    <div class="action-card" :theme="this.$store.state.dark ? 'dark' : 'light'">
         <img class="action-card__image" src="../../assets/img/covid-mask.jpg" alt="post-image" />
         <div class="action-card__text">
             <h1 class="action-card__text--title">Confecções de Máscaras</h1>
@@ -17,6 +17,24 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
+/* Color Variables & Theme Definitions */
+[theme*='light'] {
+    --border-color: var(--black-8);
+    --title-color: var(--black-4);
+    --description-color: var(--black-5);
+}
+
+[theme*='dark'] {
+    --border-color: var(--white-4);
+    --title-color: var(--white-1);
+    --description-color: var(--white-2);
+}
+
+* {
+    transition: 0.2s ease-out;
+}
+
+/* Elements Styling */
 .action-card {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -24,7 +42,8 @@ export default {}
     height: 32.5rem;
     width: 39.3rem;
 
-    border: 1px solid rgba($black, 0.1);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-radius: 0.8rem;
     overflow: hidden;
 
@@ -39,7 +58,7 @@ export default {}
         &--title {
             font-weight: 700;
             font-size: 2.4rem;
-            color: rgba($black, 0.6);
+            color: var(--title-color);
 
             margin: 0.2rem 0;
         }
@@ -47,7 +66,7 @@ export default {}
         &--sub {
             font-family: 'Merriweather';
             font-weight: 400;
-            color: rgba($black, 0.45);
+            color: var(--title-color);
 
             margin: 1rem 0;
         }

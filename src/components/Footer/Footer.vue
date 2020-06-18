@@ -1,8 +1,5 @@
 <template>
-    <footer
-        class="footer pad-sm"
-        :theme="this.$store.state.dark ? 'dark' : 'light'"
-    >
+    <footer class="footer pad-sm" :theme="this.$store.state.dark ? 'dark' : 'light'">
         <div>
             <img
                 v-if="!this.$store.state.dark"
@@ -10,12 +7,12 @@
                 src="../../assets/img/logo_ufc_horizontal.png"
                 alt="ufc-logo"
             />
-            <!-- <img
+            <img
                 v-else
                 class="footer__logo"
-                src="../../assets/img/logo_ufc_horizontal.png"
+                src="../../assets/img/logo_ufc_horizontal_white.png"
                 alt="ufc-logo"
-            /> -->
+            />
             <div class="footer__social">
                 Midias Sociais
                 <hr />
@@ -41,15 +38,11 @@
         <div class="footer__contact">
             <div class="footer__contact--title">
                 <svg class="left-arrow" @click="moveIndex(-1)">
-                    <use
-                        xlink:href="@/assets/svg/sprites.svg#right-arrow"
-                    />
+                    <use xlink:href="@/assets/svg/sprites.svg#right-arrow" />
                 </svg>
                 <h1>{{ campi[index].name }}</h1>
                 <svg class="right-arrow" @click="moveIndex(1)">
-                    <use
-                        xlink:href="@/assets/svg/sprites.svg#right-arrow"
-                    />
+                    <use xlink:href="@/assets/svg/sprites.svg#right-arrow" />
                 </svg>
             </div>
 
@@ -83,8 +76,7 @@
                     </svg>
                 </div>
                 <div class="footer__contact--campus-info--text">
-                    <h2>Horário</h2>
-                    08:00h - 22:00h
+                    <h2>Horário</h2>08:00h - 22:00h
                 </div>
             </div>
         </div>
@@ -237,6 +229,7 @@ export default {
         &--title {
             display: flex;
             align-items: center;
+            margin-left: 4rem;
 
             h1 {
                 font-size: 2.4rem;
