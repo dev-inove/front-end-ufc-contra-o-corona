@@ -3,68 +3,116 @@
         <img src="@/assets/svg/logo_purple.svg" alt="logo-combate-covid" />
         <div class="list__area">
             <ul class="sidebar__list">
-                <li class="sidebar__list--li">
+                <router-link
+                    tag="li"
+                    to="/dashboard"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#dashboard" />
                     </svg>
                     Painel de Controle
-                </li>
-                <li class="sidebar__list--li">
+                </router-link>
+                <router-link
+                    tag="li"
+                    to="/dashboard/notifications"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#notification" />
                     </svg>
                     Notificações
-                </li>
+                </router-link>
             </ul>
 
             <ul class="sidebar__list">
                 <h2>Área do Usuário</h2>
-                <li class="sidebar__list--li">
+                <router-link
+                    tag="li"
+                    to="/dashboard/my-profile"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#user" />
                     </svg>
                     Meu Perfil
-                </li>
-                <li class="sidebar__list--li selected">
+                </router-link>
+                <router-link
+                    tag="li"
+                    to="/dashboard/my-actions"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#double-tick-indicator" />
                     </svg>
                     Minhas Ações
-                </li>
-                <li class="sidebar__list--li">
+                </router-link>
+                <router-link
+                    tag="li"
+                    to="/dashboard/my-productions"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#bar-chart" />
                     </svg>
                     Minhas Produções
-                </li>
-                <li class="sidebar__list--li">
+                </router-link>
+
+                <router-link
+                    tag="li"
+                    to="/dashboard/my-necessities"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#cart" />
                     </svg>
                     Minhas Necessidades
-                </li>
-                <li class="sidebar__list--li">
+                </router-link>
+
+                <router-link
+                    tag="li"
+                    to="/dashboard/locations"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#pin" />
                     </svg>
                     Locais
-                </li>
+                </router-link>
             </ul>
 
             <ul class="sidebar__list">
                 <h2>Administração</h2>
-                <li class="sidebar__list--li">
+                <router-link
+                    tag="li"
+                    to="/dashboard/users"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#friends" />
                     </svg>
                     Usuários
-                </li>
-                <li class="sidebar__list--li">
+                </router-link>
+
+                <router-link
+                    tag="li"
+                    to="/dashboard/contact"
+                    exact-active-class="selected"
+                    class="sidebar__list--li"
+                >
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#call" />
                     </svg>
                     Contato
-                </li>
+                </router-link>
             </ul>
         </div>
     </div>
@@ -109,6 +157,33 @@ export default {}
         }
 
         &--li {
+            position: relative;
+            cursor: pointer;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 2px;
+                background-color: #66288e;
+                transform: scaleY(0);
+                transition: transform 0.4s, background-color 0.1s;
+            }
+
+            &:hover::before {
+                transform: scaleY(1);
+            }
+
+            &:hover {
+                color: black;
+
+                & .icon {
+                    fill: black;
+                }
+            }
+
             &.selected {
                 color: black;
                 background-color: #f7f7f7;

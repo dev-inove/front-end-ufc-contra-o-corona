@@ -1,7 +1,9 @@
 <template>
     <div class="admin-pages">
         <Sidebar />
-        <div></div>
+        <div class="pad-sm pad-xs-vr">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -20,5 +22,10 @@ export default {
 
     background-color: #fcfcfc;
     height: 100vh;
+}
+
+.pad-xs-vr {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 </style>

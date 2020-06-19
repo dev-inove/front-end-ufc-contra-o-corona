@@ -6,6 +6,8 @@ import Auth from '../views/Auth.vue'
 import NecessityPage from '../components/Necessities/NecessityPage.vue'
 import ActionPage from '../components/Actions/ActionPage.vue'
 import AdminPages from '../components/Admin/AdminPages.vue'
+import Dashboard from '../components/Admin/Dashboard.vue'
+import Notifications from '../components/Admin/Notifications.vue'
 
 Vue.use(VueRouter)
 
@@ -17,8 +19,22 @@ const routes = [
     },
     {
         name: 'AdminPages',
-        path: '/admin',
-        component: AdminPages
+        path: '/dashboard',
+        component: AdminPages,
+        children: [
+            {
+                path: '/',
+                component: Dashboard
+            },
+            { path: 'notifications', component: Notifications },
+            { path: 'my-profile' },
+            { path: 'my-actions' },
+            { path: 'my-productions' },
+            { path: 'my-necessities' },
+            { path: 'locations' },
+            { path: 'users' },
+            { path: 'contact' }
+        ]
     },
     {
         name: 'actionPage',
