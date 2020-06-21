@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-header">
-        <div>
+        <div class="dashboard-header__text-area">
             <h1>Olá, usuário</h1>
             <h2>Bem-vindo a seção destinada a todas as atividades dos administradores</h2>
         </div>
@@ -19,6 +19,12 @@ export default {}
     display: flex;
     justify-content: space-between;
     background-color: #f7f7f7;
+    border-radius: 1.5rem;
+    padding: 1rem;
+
+    &__text-area {
+        padding: 2rem 1rem;
+    }
 
     h1 {
         font-size: 3.6rem;

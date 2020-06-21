@@ -1,44 +1,85 @@
 <template>
     <div>
         <DashboardHeader />
-        <div class="card-row"></div>
-        <b-table hover :items="items"></b-table>
+        <div class="card-row">
+            <DashboardTableCard
+                v-for="card in cards"
+                :key="card.title"
+                :title="card.title"
+                :isSelected="card.selected"
+                @selected="changeCardSelected(card)"
+            />
+        </div>
+        <div class="table-container">
+            <Table :titles="aaa" :values="bbb" />
+        </div>
     </div>
 </template>
 
 <script>
 import DashboardHeader from './DashboardHeader'
+import DashboardTableCard from './DashboardTableCard'
+import Table from './Table'
 
 export default {
     name: 'Dashboard',
-    components: { DashboardHeader },
+    components: {
+        DashboardHeader,
+        DashboardTableCard,
+        Table
+    },
     data() {
         return {
-            items: [
+            aaa: [
+                'Titulo',
+                'Inicio',
+                'Termino',
+                'Responsavel',
+                'Situacao'
+            ],
+            bbb: [
                 {
-                    age: 40,
-                    first_name: 'Dickerson',
-                    last_name: 'Macdonald'
-                },
-                { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-                {
-                    age: 89,
-                    first_name: 'Geneva',
-                    last_name: 'Wilson',
-                    _rowVariant: 'danger'
+                    title: 'Masks',
+                    startDate: '1',
+                    endDate: '2',
+                    responsible: 'saas',
+                    situation: 'hard'
                 },
                 {
-                    age: 40,
-                    first_name: 'Thor',
-                    last_name: 'MacDonald',
-                    _cellVariants: { age: 'info', first_name: 'warning' }
+                    title: 'Sasuke',
+                    startDate: '1',
+                    endDate: '2',
+                    responsible: 'saas',
+                    situation: 'hard'
                 },
-                { age: 29, first_name: 'Dick', last_name: 'Dunlap' }
+                {
+                    title: 'Basket',
+                    startDate: '1',
+                    endDate: '2',
+                    responsible: 'saas',
+                    situation: 'hard'
+                }
+            ],
+            cards: [
+                { title: 'Todas as ações', selected: false },
+                { title: 'Todas as produções', selected: false },
+                { title: 'Todas as necessidades', selected: false }
             ]
+        }
+    },
+    methods: {
+        changeCardSelected(card) {
+            /* eslint-disable no-param-reassign */
+            /* eslint-disable no-return-assign */
+            this.cards.forEach(el => (el.selected = false))
+            card.selected = true
         }
     }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.card-row {
+    display: flex;
+}
 </style>
