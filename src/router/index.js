@@ -8,6 +8,7 @@ import ActionPage from '../components/Actions/ActionPage.vue'
 import AdminPages from '../components/Admin/AdminPages.vue'
 import Dashboard from '../components/Admin/Dashboard.vue'
 import Notifications from '../components/Admin/Notifications.vue'
+import myActions from '../components/Admin/MyActions.vue'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,7 @@ const routes = [
             },
             { path: 'notifications', component: Notifications },
             { path: 'my-profile' },
-            { path: 'my-actions' },
+            { path: 'my-actions', component: myActions },
             { path: 'my-productions' },
             { path: 'my-necessities' },
             { path: 'locations' },
