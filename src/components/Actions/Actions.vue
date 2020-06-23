@@ -6,7 +6,12 @@
             <br />com o enfrentamento aos danos causados pelo novo
             coronavírus (COVID-19)
         </SectionTitle>
-        <Carrousel :itemsQuantity="items.length">
+        <Carrousel
+            style="margin-bottom: 5rem"
+            :itemsQuantity="items.length"
+            :windowSize="2"
+            :paginationFactor="405"
+        >
             <ActionCard v-for="item in items" :key="item" />
         </Carrousel>
     </div>
@@ -21,8 +26,16 @@ export default {
     components: { Carrousel, SectionTitle, ActionCard },
     data() {
         return {
-            items: [1, 2, 3, 4]
+            items: [1, 2, 3, 4, 5, 6]
         }
+    },
+    computed: {
+        // windowSize() {
+        //     if (this.items.length < 3) {
+        //         return 0
+        //     }
+        //     return this.items.length - 3
+        // }
     }
 }
 </script>

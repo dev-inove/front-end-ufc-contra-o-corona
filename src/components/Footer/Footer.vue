@@ -1,5 +1,8 @@
 <template>
-    <footer class="footer pad-sm" :theme="this.$store.state.dark ? 'dark' : 'light'">
+    <footer
+        class="footer pad-sm"
+        :theme="this.$store.state.dark ? 'dark' : 'light'"
+    >
         <div>
             <img
                 v-if="!this.$store.state.dark"
@@ -38,11 +41,15 @@
         <div class="footer__contact">
             <div class="footer__contact--title">
                 <svg class="left-arrow" @click="moveIndex(-1)">
-                    <use xlink:href="@/assets/svg/sprites.svg#right-arrow" />
+                    <use
+                        xlink:href="@/assets/svg/sprites.svg#right-arrow"
+                    />
                 </svg>
                 <h1>{{ campi[index].name }}</h1>
                 <svg class="right-arrow" @click="moveIndex(1)">
-                    <use xlink:href="@/assets/svg/sprites.svg#right-arrow" />
+                    <use
+                        xlink:href="@/assets/svg/sprites.svg#right-arrow"
+                    />
                 </svg>
             </div>
 
@@ -76,7 +83,8 @@
                     </svg>
                 </div>
                 <div class="footer__contact--campus-info--text">
-                    <h2>Horário</h2>08:00h - 22:00h
+                    <h2>Horário</h2>
+                    08:00h - 22:00h
                 </div>
             </div>
         </div>

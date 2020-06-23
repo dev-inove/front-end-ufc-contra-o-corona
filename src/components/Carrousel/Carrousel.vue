@@ -37,6 +37,14 @@ export default {
         itemsQuantity: {
             type: Number,
             required: true
+        },
+        windowSize: {
+            type: Number,
+            required: true
+        },
+        paginationFactor: {
+            type: Number,
+            require: true
         }
     },
     data() {
@@ -45,12 +53,6 @@ export default {
         }
     },
     computed: {
-        windowSize() {
-            return 2
-        },
-        paginationFactor() {
-            return 280
-        },
         atEndOfList() {
             // prettier-ignore
             // eslint-disable-next-line max-len
@@ -98,6 +100,7 @@ export default {
     // }
 
     &--overflow-container {
+        display: flex;
         overflow: hidden;
     }
 

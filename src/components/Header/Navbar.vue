@@ -71,6 +71,10 @@ export default {
     background-color: var(--nav-bg);
     height: 7rem;
 
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+
     &__list {
         display: flex;
         flex: 1;

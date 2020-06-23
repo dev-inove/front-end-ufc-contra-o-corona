@@ -1,6 +1,10 @@
 <template>
     <div class="call-to-action">
-        <img id="purple-effect" src="../../assets/img/purple-effect.png" alt="purple-background" />
+        <img
+            id="purple-effect"
+            src="../../assets/img/purple-effect.png"
+            alt="purple-background"
+        />
         <img
             id="call-to-action-img"
             src="../../assets/img/call-to-action-cover.jpg"
@@ -41,6 +45,7 @@ export default {
         letter-spacing: 0.15rem;
 
         color: $white;
+        z-index: 3;
     }
 
     button {
@@ -56,17 +61,19 @@ export default {
 
         color: $white;
         background-color: #2f80ed;
+
+        z-index: 3;
     }
 }
 
 #purple-effect {
     position: absolute;
-    z-index: -1;
+    z-index: 2;
 }
 
 #call-to-action-img {
     position: absolute;
     width: 100%;
-    z-index: -2;
+    z-index: 0;
 }
 </style>

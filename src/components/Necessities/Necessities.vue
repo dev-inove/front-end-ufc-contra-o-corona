@@ -5,7 +5,11 @@
             necessários
             <br />para que as ações sejam feitas.
         </SectionTitle>
-        <Carrousel :itemsQuantity="2">
+        <Carrousel
+            :itemsQuantity="items.length"
+            :windowSize="2"
+            :paginationFactor="412"
+        >
             <NecessityCard v-for="item in items" :key="item" />
         </Carrousel>
     </div>
@@ -20,7 +24,7 @@ export default {
     components: { SectionTitle, Carrousel, NecessityCard },
     data() {
         return {
-            items: [1, 2]
+            items: [1, 2, 3, 4, 5, 6]
         }
     }
 }

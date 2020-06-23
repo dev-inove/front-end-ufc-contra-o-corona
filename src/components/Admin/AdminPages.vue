@@ -25,7 +25,7 @@ export default {
 }
 
 .pad-xs-vr {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 </style>
