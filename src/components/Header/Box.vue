@@ -1,20 +1,15 @@
 <template>
     <div class="box">
-        <h2 class="box__title">{{ box.title }}</h2>
+        <h2 class="box__title">{{ title }}</h2>
         <h2 class="box__state">Ceará</h2>
-        <h2 class="box__num">{{ box.num }}</h2>
+        <h2 class="box__num">{{ num }}</h2>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Box',
-    props: {
-        box: {
-            type: Object,
-            required: true
-        }
-    }
+    props: ['title', 'num']
 }
 </script>
 

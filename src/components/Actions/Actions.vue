@@ -8,16 +8,22 @@
         </SectionTitle>
         <Carrousel
             style="margin-bottom: 5rem"
-            :itemsQuantity="items.length"
+            :itemsQuantity="actions.length"
             :windowSize="2"
             :paginationFactor="405"
         >
-            <ActionCard v-for="item in items" :key="item" />
+            <ActionCard
+                v-for="action in actions"
+                :key="action.id"
+                :action="action"
+            />
         </Carrousel>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 import Carrousel from '../Carrousel/Carrousel.vue'
 import SectionTitle from '../utils/SectionTitle.vue'
 import ActionCard from './ActionCard.vue'
@@ -26,16 +32,21 @@ export default {
     components: { Carrousel, SectionTitle, ActionCard },
     data() {
         return {
-            items: [1, 2, 3, 4, 5, 6]
+            actions: []
         }
     },
-    computed: {
-        // windowSize() {
-        //     if (this.items.length < 3) {
-        //         return 0
-        //     }
-        //     return this.items.length - 3
-        // }
+    computed: {},
+    methods: {
+        getActions() {
+            const url = 'https://backend-ucc.herokuapp.com/actions'
+            axios.get(url).then(res => {
+                /* Pega apenas as 6 últimas ações */
+                this.actions = res.data.slice(0, 6)
+            })
+        }
+    },
+    mounted() {
+        this.getActions()
     }
 }
 </script>

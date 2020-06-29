@@ -23,9 +23,4 @@ export default {
     background-color: #fcfcfc;
     height: 100vh;
 }
-
-.pad-xs-vr {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-}
 </style>

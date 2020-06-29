@@ -1,5 +1,5 @@
 <template>
-    <div class="notifications">NOTIFICATIONS AAAAAAAAAAAAAAAAAAAA</div>
+    <div class="notifications">NOTIFICATIONS</div>
 </template>
 
 <script>

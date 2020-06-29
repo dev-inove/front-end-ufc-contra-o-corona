@@ -12,12 +12,16 @@
             </h2>
         </div>
         <div class="header__info">
-            <Box v-for="box in boxes" :key="box.title" :box="box" />
+            <Box title="Confirmados" :num="stats.cases" />
+            <Box title="Recuperados" :num="0" />
+            <Box title="Mortes" :num="stats.deaths" />
         </div>
     </header>
 </template>
 
 <script>
+import axios from 'axios'
+
 import Navbar from './Navbar'
 import Box from './Box'
 
@@ -26,21 +30,15 @@ export default {
     components: { Navbar, Box },
     data() {
         return {
-            boxes: [
-                {
-                    title: 'Confirmados',
-                    num: '34.573'
-                },
-                {
-                    title: 'Recuperados',
-                    num: '6.748'
-                },
-                {
-                    title: 'Mortes',
-                    num: '2.251'
-                }
-            ]
+            stats: {}
         }
+    },
+    mounted() {
+        // prettier-ignore
+        const url = 'https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/ce'
+        axios.get(url).then(res => {
+            this.stats = res.data
+        })
     }
 }
 </script>

@@ -14,32 +14,22 @@
                     </svg>
                     Painel de Controle
                 </router-link>
-                <router-link
-                    tag="li"
-                    to="/dashboard/notifications"
-                    exact-active-class="selected"
-                    class="sidebar__list--li"
-                >
+                <li class="sidebar__list--li disabled">
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#notification" />
                     </svg>
                     Notificações
-                </router-link>
+                </li>
             </ul>
 
             <ul class="sidebar__list">
                 <h2>Área do Usuário</h2>
-                <router-link
-                    tag="li"
-                    to="/dashboard/my-profile"
-                    exact-active-class="selected"
-                    class="sidebar__list--li"
-                >
+                <li class="sidebar__list--li disabled">
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#user" />
                     </svg>
                     Meu Perfil
-                </router-link>
+                </li>
                 <router-link
                     tag="li"
                     to="/dashboard/my-actions"
@@ -51,17 +41,12 @@
                     </svg>
                     Minhas Ações
                 </router-link>
-                <router-link
-                    tag="li"
-                    to="/dashboard/my-productions"
-                    exact-active-class="selected"
-                    class="sidebar__list--li"
-                >
+                <li class="sidebar__list--li disabled">
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#bar-chart" />
                     </svg>
                     Minhas Produções
-                </router-link>
+                </li>
 
                 <router-link
                     tag="li"
@@ -75,17 +60,12 @@
                     Minhas Necessidades
                 </router-link>
 
-                <router-link
-                    tag="li"
-                    to="/dashboard/locations"
-                    exact-active-class="selected"
-                    class="sidebar__list--li"
-                >
+                <li class="sidebar__list--li disabled">
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#pin" />
                     </svg>
                     Locais
-                </router-link>
+                </li>
             </ul>
 
             <ul class="sidebar__list">
@@ -102,17 +82,12 @@
                     Usuários
                 </router-link>
 
-                <router-link
-                    tag="li"
-                    to="/dashboard/contact"
-                    exact-active-class="selected"
-                    class="sidebar__list--li"
-                >
+                <li class="sidebar__list--li disabled">
                     <svg class="icon">
                         <use xlink:href="@/assets/svg/sprites.svg#call" />
                     </svg>
                     Contato
-                </router-link>
+                </li>
             </ul>
         </div>
     </div>
@@ -125,6 +100,10 @@ export default {}
 <style lang="scss" scoped>
 .list__area {
     width: 100%;
+}
+
+.disabled:hover {
+    cursor: default;
 }
 
 .sidebar {
@@ -172,11 +151,11 @@ export default {}
                 transition: transform 0.4s, background-color 0.1s;
             }
 
-            &:hover::before {
+            &:not(.selected):not(.disabled):hover::before {
                 transform: scaleY(1);
             }
 
-            &:hover {
+            &:hover:not(.selected):not(.disabled) {
                 color: black;
 
                 & .icon {

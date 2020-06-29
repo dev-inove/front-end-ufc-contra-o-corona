@@ -1,18 +1,12 @@
 <template>
-    <nav
-        class="navbar pad-sm"
-        :theme="this.$store.state.dark ? 'dark' : 'light'"
-    >
+    <nav class="navbar pad-sm" :theme="this.$store.state.dark ? 'dark' : 'light'">
         <img
             v-if="!this.$store.state.dark"
+            @click="$router.push('/')"
             src="@/assets/svg/logo_purple.svg"
             alt="logo-combate-ao-covid-19"
         />
-        <img
-            v-else
-            src="@/assets/svg/logo_white.svg"
-            alt="logo-combate-ao-covid-19"
-        />
+        <img v-else src="@/assets/svg/logo_white.svg" alt="logo-combate-ao-covid-19" />
         <ul class="navbar__list">
             <li class="active">Home</li>
             <li>Ações</li>
@@ -22,7 +16,7 @@
         </ul>
         <div class="navbar__actions">
             <a>Cadastrar</a>
-            <button>Login</button>
+            <button @click="$router.push('dashboard')">Login</button>
         </div>
     </nav>
 </template>
@@ -72,6 +66,7 @@ export default {
     height: 7rem;
 
     position: fixed;
+    top: 0;
     z-index: 1000;
     width: 100%;
 

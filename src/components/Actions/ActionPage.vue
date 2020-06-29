@@ -1,31 +1,41 @@
 <template>
-    <div class="action-page" :theme="this.$store.state.dark ? 'dark' : 'light'">
+    <div
+        class="action-page"
+        :theme="this.$store.state.dark ? 'dark' : 'light'"
+    >
         <Navbar />
         <div class="post pad-sm">
-            <h1 class="post__title">Confecções de Máscaras</h1>
+            <h1 class="post__title">{{ action.title }}</h1>
             <h2 class="post__subtitle">
-                Produção de máscaras descartaveis e outras substancias
-                essenciais para a atual crise viral.
+                {{ action.subtitle }}
             </h2>
 
             <div class="post__info">
                 <div class="post__info--headers">
-                    <h3>Responsavel Diego Cunha Machado</h3>
+                    <h3>{{ action.user.fullname }}</h3>
                     <h4>05 de abril de 2020 - 12h15</h4>
                     <h4>Última Atualizalição há uma hora</h4>
                 </div>
                 <div class="post__info--social">
                     <svg class="social-icon">
-                        <use xlink:href="@/assets/svg/sprites.svg#facebook-1" />
+                        <use
+                            xlink:href="@/assets/svg/sprites.svg#facebook-1"
+                        />
                     </svg>
                     <svg class="social-icon">
-                        <use xlink:href="@/assets/svg/sprites.svg#twitter-1" />
+                        <use
+                            xlink:href="@/assets/svg/sprites.svg#twitter-1"
+                        />
                     </svg>
                     <svg class="social-icon">
-                        <use xlink:href="@/assets/svg/sprites.svg#whatsapp" />
+                        <use
+                            xlink:href="@/assets/svg/sprites.svg#whatsapp"
+                        />
                     </svg>
                     <svg class="social-icon">
-                        <use xlink:href="@/assets/svg/sprites.svg#pinterest" />
+                        <use
+                            xlink:href="@/assets/svg/sprites.svg#pinterest"
+                        />
                     </svg>
                 </div>
             </div>
@@ -37,31 +47,16 @@
             <div>PHOTO</div>
 
             <div class="post__content">
-                Lorem Ipsum é simplesmente uma simulação de texto da
-                indústria tipográfica e de impressos, e vem sendo utilizado
-                desde o século XVI, quando um impressor desconhecido pegou
-                uma bandeja de tipos e os embaralhou para fazer um livro de
-                modelos de tipos. Lorem Ipsum sobreviveu não só a cinco
-                séculos, como também ao salto para a editoração eletrônica,
-                permanecendo essencialmente inalterado. Se popularizou na
-                década de 60, quando a Letraset lançou decalques contendo
-                passagens de Lorem Ipsum, e mais recentemente quando passou
-                a ser integrado a softwares de editoração eletrônica.
-                <br />
-                <br />Ao contrário do que se acredita, Lorem Ipsum não é
-                simplesmente um texto randômico. Com mais de 2000 anos,
-                suas raízes podem ser encontradas em uma obra de literatura
-                latina clássica datada de 45 AC. Richard McClintock, um
-                professor de latim do Hampden-Sydney College na Virginia,
-                pesquisou uma das mais obscuras palavras em latim,
-                consectetur, oriunda de uma passagem de Lorem Ipsum.
+                {{ action.content }}
             </div>
 
             <SectionTitle title="Recomendadas para você"></SectionTitle>
             <div class="post__recommended">
-                <ActionCard />
-                <ActionCard />
-                <ActionCard />
+                <ActionCard
+                    v-for="rec in recommended"
+                    :key="rec.id"
+                    :action="rec"
+                />
             </div>
         </div>
         <Footer />
@@ -69,17 +64,13 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import Navbar from '../Header/Navbar.vue'
 import SectionTitle from '../utils/SectionTitle.vue'
 import SwitchLight from '../utils/SwitchLight.vue'
 import Footer from '../Footer/Footer.vue'
 import ActionCard from './ActionCard.vue'
-
-// titulo
-// subtitulo
-// autor
-// hora do post
-// ultima atualização
 
 export default {
     components: {
@@ -88,6 +79,32 @@ export default {
         SwitchLight,
         Footer,
         ActionCard
+    },
+    data() {
+        return {
+            action: {},
+            recommended: []
+        }
+    },
+    methods: {
+        loadAction() {
+            const url = `https://backend-ucc.herokuapp.com/actions/${this.$route.params.id}`
+            axios.get(url).then(res => {
+                this.action = res.data
+            })
+        },
+        loadRecommended() {
+            const url = 'https://backend-ucc.herokuapp.com/actions'
+            axios.get(url).then(res => {
+                this.recommended = res.data.filter(
+                    el => el.id !== this.action.id
+                )
+            })
+        }
+    },
+    mounted() {
+        this.loadAction()
+        this.loadRecommended()
     }
 }
 </script>
@@ -125,7 +142,7 @@ export default {
 /* Elements Styling */
 .post {
     background-color: var(--post-background);
-    margin: 3rem 0;
+    margin: 7rem 0;
 
     &__title {
         font-family: 'Raleway', sans-serif;
@@ -179,7 +196,9 @@ export default {
     }
 
     &__recommended {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
 }
 </style>

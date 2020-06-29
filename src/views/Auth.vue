@@ -1,22 +1,17 @@
 <template>
     <div class="auth">
         <div class="auth__cover">
-            <img
-                class="logo"
-                src="@/assets/svg/logo_purple.svg"
-                alt="logo-combate-ao-covid-19"
-            />
+            <img class="logo" src="@/assets/svg/logo_purple.svg" alt="logo-combate-ao-covid-19" />
             <svg>
                 <use xlink:href="@/assets/svg/co-working.svg#coworking" />
             </svg>
         </div>
         <div class="auth__login">
-            <SectionTitle title="Login"
-                >Faça login para gerenciar ações.</SectionTitle
-            >
+            <SectionTitle title="Login">Faça login para gerenciar ações.</SectionTitle>
 
             <div>
                 <input
+                    v-model="user.email"
                     class="auth__login--email"
                     type="email"
                     placeholder="Digite seu e-mail"
@@ -27,6 +22,7 @@
                 </svg>
 
                 <input
+                    v-model="user.password"
                     class="auth__login--password"
                     type="password"
                     placeholder="Digite sua senha"
@@ -38,30 +34,44 @@
 
                 <div class="login-options">
                     <span class="remember-me">
-                        <input
-                            type="checkbox"
-                            name="remember-me"
-                            id="remember-me"
-                        />
+                        <input type="checkbox" name="remember-me" id="remember-me" />
                         <label for="remember-me">Lembrar de mim</label>
                     </span>
 
-                    <span class="forgot-password"
-                        >Esqueci minha senha</span
-                    >
+                    <span class="forgot-password">Esqueci minha senha</span>
                 </div>
 
-                <button>Entrar</button>
+                <button @click="signin">Entrar</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+
+import { baseApiUrl, userKey } from '@/global'
 import SectionTitle from '../components/utils/SectionTitle.vue'
 
 export default {
     name: 'Auth',
+    data() {
+        return {
+            user: {}
+        }
+    },
+    methods: {
+        signin() {
+            axios
+                .post(`${baseApiUrl}/sessions`, this.user)
+                .then(res => {
+                    this.$store.commit('setUser', res.data)
+                    localStorage.setItem(userKey, JSON.stringify(res.data))
+                    this.$router.push({ path: '/dashboard' })
+                })
+                .catch(err => console.log(err))
+        }
+    },
     components: { SectionTitle }
 }
 </script>
@@ -146,11 +156,11 @@ export default {
             cursor: pointer;
         }
 
-        &--email {
-        }
+        // &--email {
+        // }
 
-        &--password {
-        }
+        // &--password {
+        // }
     }
 
     &__cover {

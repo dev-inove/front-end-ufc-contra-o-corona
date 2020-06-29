@@ -9,6 +9,16 @@
             :class="{ dark: values.indexOf(value) % 2 === 0 }"
         >
             <td v-for="a in value" :key="a">{{ a }}</td>
+            <td>
+                <svg class="icon">
+                    <use xlink:href="@/assets/svg/sprites.svg#pencil" />
+                </svg>
+            </td>
+            <td>
+                <svg class="icon">
+                    <use xlink:href="@/assets/svg/sprites.svg#delete" />
+                </svg>
+            </td>
         </tr>
     </table>
 </template>
@@ -48,5 +58,11 @@ export default {
     th {
         text-align: start;
     }
+}
+
+.icon {
+    height: 1.6rem;
+    width: 1.6rem;
+    fill: rgba($black, 0.45);
 }
 </style>

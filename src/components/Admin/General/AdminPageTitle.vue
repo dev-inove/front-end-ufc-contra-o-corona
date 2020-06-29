@@ -4,7 +4,6 @@
         <h2 class="admin-page-title__sub">
             <slot></slot>
         </h2>
-        <!-- <h2 class="admin-page-title__sub" v-if="units">{{ units }} Unidades</h2> -->
     </div>
 </template>
 
@@ -16,10 +15,6 @@ export default {
             type: String,
             required: true
         }
-        // units: {
-        //     type: Number,
-        //     required: false
-        // }
     }
 }
 </script>

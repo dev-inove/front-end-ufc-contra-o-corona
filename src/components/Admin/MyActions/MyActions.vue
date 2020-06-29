@@ -1,14 +1,12 @@
 <template>
     <div class="my-actions">
         <div class="my-actions__header">
-            <AdminPageTitle :title="pageTitle">{{
+            <AdminPageTitle :title="pageTitle">
+                {{
                 pageSub
-            }}</AdminPageTitle>
-            <ActionButton
-                v-if="mode === 'list'"
-                title="Adicionar"
-                :action="addNewAction"
-            />
+                }}
+            </AdminPageTitle>
+            <ActionButton v-if="mode === 'list'" title="Adicionar" :action="addNewAction" />
         </div>
 
         <!--List -->
@@ -26,10 +24,7 @@
         <!--Register new action-->
         <div v-if="mode === 'content'">
             <!--Step 1-->
-            <div
-                v-if="step === 1"
-                style="display: flex; flex-direction: column;"
-            >
+            <div v-if="step === 1" style="display: flex; flex-direction: column;">
                 <label class="labelzinho" for="a">Titulo da ação</label>
                 <input
                     class="inputzinho"
@@ -50,17 +45,9 @@
                 <VueEditor />
             </div>
             <!--Step 2-->
-            <div
-                v-if="step === 2"
-                style="display: flex; flex-direction: column;"
-            >
+            <div v-if="step === 2" style="display: flex; flex-direction: column;">
                 <label for="c" class="labelzinho">URL da Imagem</label>
-                <input
-                    type="text"
-                    class="inputzinho"
-                    id="c"
-                    placeholder="Image URL"
-                />
+                <input type="text" class="inputzinho" id="c" placeholder="Image URL" />
 
                 <label for="cars" class="labelzinho">Autor:</label>
 
@@ -78,10 +65,7 @@
                     :filled="false"
                     style="margin-right: 2rem"
                 />
-                <ActionButton
-                    :title="nextStepButtonTitle"
-                    :action="nextStepAction"
-                />
+                <ActionButton :title="nextStepButtonTitle" :action="nextStepAction" />
             </div>
         </div>
     </div>
@@ -89,9 +73,9 @@
 
 <script>
 import { VueEditor } from 'vue2-editor'
-import AdminPageTitle from './AdminPageTitle'
-import ActionButton from './ActionButton'
-import Table from './Table'
+import AdminPageTitle from '../General/AdminPageTitle'
+import ActionButton from '../General/ActionButton'
+import Table from '../General/Table'
 
 export default {
     components: {

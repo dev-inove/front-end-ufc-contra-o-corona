@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard-header">
         <div class="dashboard-header__text-area">
-            <h1>Olá, usuário</h1>
+            <h1>Olá, {{ userName }}</h1>
             <h2>Bem-vindo a seção destinada a todas as atividades dos administradores</h2>
         </div>
         <svg>
@@ -11,7 +11,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+    computed: {
+        userName: {
+            get() {
+                return this.$store.state.user.user.fullname
+            }
+        }
+    }
+}
 </script>
 
 <style lang="scss">

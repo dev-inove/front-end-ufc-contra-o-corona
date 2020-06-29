@@ -11,15 +11,17 @@
             />
         </div>
         <div class="table-container">
-            <Table :titles="aaa" :values="bbb" />
+            <Table :titles="titles" :values="values" />
         </div>
     </div>
 </template>
 
 <script>
+// import axios from 'axios'
+
 import DashboardHeader from './DashboardHeader'
 import DashboardTableCard from './DashboardTableCard'
-import Table from './Table'
+import Table from '../General/Table'
 
 export default {
     name: 'Dashboard',
@@ -30,14 +32,14 @@ export default {
     },
     data() {
         return {
-            aaa: [
+            titles: [
                 'Titulo',
                 'Inicio',
                 'Termino',
                 'Responsavel',
                 'Situacao'
             ],
-            bbb: [
+            values: [
                 {
                     title: 'Masks',
                     startDate: '1',
@@ -61,7 +63,7 @@ export default {
                 }
             ],
             cards: [
-                { title: 'Todas as ações', selected: false },
+                { title: 'Todas as ações', selected: true },
                 { title: 'Todas as produções', selected: false },
                 { title: 'Todas as necessidades', selected: false }
             ]
