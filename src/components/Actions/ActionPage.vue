@@ -46,11 +46,11 @@
 
             <div>PHOTO</div>
 
-            <div class="post__content">
-                {{ action.content }}
-            </div>
+            <div class="post__content" v-html="action.content"></div>
 
-            <SectionTitle title="Recomendadas para você"></SectionTitle>
+            <SectionTitle
+                title="Recomendadas para você"
+            ></SectionTitle>
             <div class="post__recommended">
                 <ActionCard
                     v-for="rec in recommended"

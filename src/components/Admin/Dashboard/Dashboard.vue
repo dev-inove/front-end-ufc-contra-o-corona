@@ -17,7 +17,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
 import DashboardHeader from './DashboardHeader'
 import DashboardTableCard from './DashboardTableCard'
@@ -33,35 +33,15 @@ export default {
     data() {
         return {
             titles: [
-                'Titulo',
-                'Inicio',
-                'Termino',
-                'Responsavel',
-                'Situacao'
+                'ID',
+                'Título',
+                'Criado em',
+                'Última Atualização',
+                'Responsável',
+                ' ',
+                ' '
             ],
-            values: [
-                {
-                    title: 'Masks',
-                    startDate: '1',
-                    endDate: '2',
-                    responsible: 'saas',
-                    situation: 'hard'
-                },
-                {
-                    title: 'Sasuke',
-                    startDate: '1',
-                    endDate: '2',
-                    responsible: 'saas',
-                    situation: 'hard'
-                },
-                {
-                    title: 'Basket',
-                    startDate: '1',
-                    endDate: '2',
-                    responsible: 'saas',
-                    situation: 'hard'
-                }
-            ],
+            values: [],
             cards: [
                 { title: 'Todas as ações', selected: true },
                 { title: 'Todas as produções', selected: false },
@@ -70,12 +50,31 @@ export default {
         }
     },
     methods: {
+        getTableData() {
+            const url = 'https://backend-ucc.herokuapp.com/actions'
+            axios.get(url).then(res => {
+                this.values = res.data.map(el => {
+                    const fields = {}
+
+                    fields.id = el.id
+                    fields.title = el.title
+                    fields.createdAt = el.created_at
+                    fields.updatedAt = el.updated_at
+                    fields.user = el.user.fullname
+
+                    return fields
+                })
+            })
+        },
         changeCardSelected(card) {
             /* eslint-disable no-param-reassign */
             /* eslint-disable no-return-assign */
             this.cards.forEach(el => (el.selected = false))
             card.selected = true
         }
+    },
+    mounted() {
+        this.getTableData()
     }
 }
 </script>

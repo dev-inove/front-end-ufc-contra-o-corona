@@ -1,11 +1,7 @@
 <template>
     <div class="my-actions">
         <div class="my-actions__header">
-            <AdminPageTitle :title="pageTitle">
-                {{
-                pageSub
-                }}
-            </AdminPageTitle>
+            <AdminPageTitle :title="pageTitle">{{ pageSub }}</AdminPageTitle>
             <ActionButton v-if="mode === 'list'" title="Adicionar" :action="addNewAction" />
         </div>
 
@@ -18,36 +14,44 @@
             <svg v-if="!values.length" class="not-found">
                 <use xlink:href="@/assets/svg/no_data.svg#no-data" />
             </svg>
-            <Table v-else :titles="titles" :values="values" />
+            <Table v-else :titles="titles" :values="values" :deleteButtonClick />
         </div>
 
         <!--Register new action-->
         <div v-if="mode === 'content'">
             <!--Step 1-->
             <div v-if="step === 1" style="display: flex; flex-direction: column;">
-                <label class="labelzinho" for="a">Titulo da ação</label>
+                <label class="labelzinho" for="title">Titulo da ação</label>
                 <input
                     class="inputzinho"
                     type="text"
-                    id="a"
+                    id="title"
                     placeholder="Ex: Confecção de máscaras"
+                    v-model="action.title"
                 />
 
-                <label for="b" class="labelzinho">Subtítulo</label>
+                <label for="subtitle" class="labelzinho">Subtítulo</label>
                 <input
                     class="inputzinho"
                     type="text"
-                    id="b"
+                    id="subtitle"
                     placeholder="Ex: Postos de saúde precisam de máscaras"
+                    v-model="action.subtitle"
                 />
 
                 <label class="labelzinho">Conteúdo</label>
-                <VueEditor />
+                <VueEditor v-model="action.content" placeholder="Informe o Post da Ação..." />
             </div>
             <!--Step 2-->
             <div v-if="step === 2" style="display: flex; flex-direction: column;">
-                <label for="c" class="labelzinho">URL da Imagem</label>
-                <input type="text" class="inputzinho" id="c" placeholder="Image URL" />
+                <label for="imageUrl" class="labelzinho">URL da Imagem</label>
+                <input
+                    type="text"
+                    class="inputzinho"
+                    id="imageUrl"
+                    placeholder="Informe a URL da imagem do artigo..."
+                    v-model="action.image_url"
+                />
 
                 <label for="cars" class="labelzinho">Autor:</label>
 
@@ -72,7 +76,11 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import { VueEditor } from 'vue2-editor'
+import { baseApiUrl } from '@/global'
+
 import AdminPageTitle from '../General/AdminPageTitle'
 import ActionButton from '../General/ActionButton'
 import Table from '../General/Table'
@@ -90,21 +98,16 @@ export default {
             step: 1,
             a: true,
             titles: [
-                'Titulo',
-                'Inicio',
-                'Termino',
-                'Responsavel',
-                'Situacao'
+                'ID',
+                'Título',
+                'Criado em',
+                'Última Atualização',
+                'Responsável',
+                ' ',
+                ' '
             ],
-            values: [
-                {
-                    title: 'Masks',
-                    startDate: '1',
-                    endDate: '2',
-                    responsible: 'saas',
-                    situation: 'hard'
-                }
-            ]
+            values: [],
+            action: {}
         }
     },
     computed: {
@@ -151,6 +154,27 @@ export default {
         }
     },
     methods: {
+        loadUserActions() {
+            const url = 'https://backend-ucc.herokuapp.com/actions'
+            axios.get(url).then(res => {
+                this.values = res.data
+                    .filter(
+                        // prettier-ignore
+                        el => el.user.fullname === this.$store.state.user.user.fullname
+                    )
+                    .map(el => {
+                        const fields = {}
+
+                        fields.id = el.id
+                        fields.title = el.title
+                        fields.createdAt = el.created_at
+                        fields.updatedAt = el.updated_at
+                        fields.user = el.user.fullname
+
+                        return fields
+                    })
+            })
+        },
         addNewAction() {
             this.mode = 'content'
         },
@@ -161,9 +185,16 @@ export default {
             }
 
             if (this.step === 2) {
-                console.log('salvo')
-                this.step = 1
-                this.mode = 'list'
+                axios
+                    .post(`${baseApiUrl}/actions`, this.action)
+                    .then(() => {
+                        console.log('Ação postada!')
+                        this.step = 1
+                        this.mode = 'list'
+                        this.action = {}
+                        this.loadUserActions()
+                    })
+                    .catch(err => console.log(err))
             }
         },
         previousStepAction() {
@@ -174,7 +205,12 @@ export default {
             if (this.step === 2) {
                 this.step -= 1
             }
-        }
+        },
+        editAction() {},
+        deleteAction() {}
+    },
+    mounted() {
+        this.loadUserActions()
     }
 }
 </script>

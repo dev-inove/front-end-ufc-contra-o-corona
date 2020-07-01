@@ -13,8 +13,20 @@
 
 <script>
 // import Home from './views/Home.vue'
+import { userKey } from '@/global'
 
-export default {}
+export default {
+    methods: {
+        validateToken() {
+            const json = localStorage.getItem(userKey)
+            const userData = JSON.parse(json)
+            this.$store.commit('setUser', userData)
+        }
+    },
+    created() {
+        this.validateToken()
+    }
+}
 </script>
 
 <style lang="scss">

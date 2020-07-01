@@ -89,12 +89,25 @@
                     Contato
                 </li>
             </ul>
+            <span class="logout">
+                <a href @click.prevent="logout">Sair</a>
+            </span>
         </div>
     </div>
 </template>
 
 <script>
-export default {}
+import { userKey } from '@/global'
+
+export default {
+    methods: {
+        logout() {
+            localStorage.removeItem(userKey)
+            this.$store.commit('setUser', null)
+            this.$router.push({ name: 'Home' })
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -191,6 +204,18 @@ export default {}
                 fill: rgba($black, 0.6);
             }
         }
+    }
+}
+
+.logout {
+    a,
+    a:visited {
+        font-size: 1.4rem;
+        font-weight: 500;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: rgba($black, 0.6);
     }
 }
 </style>

@@ -9,13 +9,13 @@
             :class="{ dark: values.indexOf(value) % 2 === 0 }"
         >
             <td v-for="a in value" :key="a">{{ a }}</td>
-            <td>
-                <svg class="icon">
+            <td style="padding: 0 1rem;">
+                <svg class="icon edit">
                     <use xlink:href="@/assets/svg/sprites.svg#pencil" />
                 </svg>
             </td>
-            <td>
-                <svg class="icon">
+            <td style="padding: 0 1rem;">
+                <svg class="icon delete" @click="deleteButtonClick">
                     <use xlink:href="@/assets/svg/sprites.svg#delete" />
                 </svg>
             </td>
@@ -32,6 +32,14 @@ export default {
         },
         values: {
             type: Array,
+            required: false
+        },
+        editButtonClick: {
+            type: Function,
+            required: false
+        },
+        deleteButtonClick: {
+            type: Function,
             required: false
         }
     }
@@ -64,5 +72,14 @@ export default {
     height: 1.6rem;
     width: 1.6rem;
     fill: rgba($black, 0.45);
+    cursor: pointer;
+
+    &:hover.edit {
+        fill: #f6e58d;
+    }
+
+    &:hover.delete {
+        fill: #ff7979;
+    }
 }
 </style>
