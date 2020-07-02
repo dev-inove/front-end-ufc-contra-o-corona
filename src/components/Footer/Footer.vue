@@ -1,9 +1,6 @@
 <template>
-    <footer
-        class="footer pad-sm"
-        :theme="this.$store.state.dark ? 'dark' : 'light'"
-    >
-        <div>
+    <footer class="footer pad-sm" :theme="this.$store.state.dark ? 'dark' : 'light'">
+        <div class="footer__info">
             <img
                 v-if="!this.$store.state.dark"
                 class="footer__logo"
@@ -41,15 +38,11 @@
         <div class="footer__contact">
             <div class="footer__contact--title">
                 <svg class="left-arrow" @click="moveIndex(-1)">
-                    <use
-                        xlink:href="@/assets/svg/sprites.svg#right-arrow"
-                    />
+                    <use xlink:href="@/assets/svg/sprites.svg#right-arrow" />
                 </svg>
                 <h1>{{ campi[index].name }}</h1>
                 <svg class="right-arrow" @click="moveIndex(1)">
-                    <use
-                        xlink:href="@/assets/svg/sprites.svg#right-arrow"
-                    />
+                    <use xlink:href="@/assets/svg/sprites.svg#right-arrow" />
                 </svg>
             </div>
 
@@ -83,8 +76,7 @@
                     </svg>
                 </div>
                 <div class="footer__contact--campus-info--text">
-                    <h2>Horário</h2>
-                    08:00h - 22:00h
+                    <h2>Horário</h2>08:00h - 22:00h
                 </div>
             </div>
         </div>
@@ -187,6 +179,18 @@ export default {
     padding-bottom: 2rem;
     margin-top: 15rem;
 
+    @include respond(phone) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__info {
+        @include respond(phone) {
+            margin-top: 25rem;
+        }
+    }
+
     &__social {
         width: 18.2rem;
 
@@ -197,12 +201,22 @@ export default {
 
         margin: 2rem 0;
 
+        @include respond(phone) {
+            text-align: center;
+            margin: 2rem auto;
+        }
+
         hr {
             background: var(--hr);
             margin-top: 0.2rem;
         }
 
         &--icon {
+            @include respond(phone) {
+                height: 2.6rem;
+                width: 2.6rem;
+            }
+
             fill: var(--social-icons);
             margin: 1rem;
             height: 2.4rem;
@@ -218,6 +232,10 @@ export default {
         font-size: 1.8rem;
         line-height: 2rem;
         color: var(--footer-legal);
+
+        @include respond(phone) {
+            text-align: center;
+        }
     }
 
     &__contact {
@@ -233,6 +251,10 @@ export default {
         background-color: var(--contact-bg);
         border-radius: 1.5rem;
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+
+        @include respond(phone) {
+            top: -65rem;
+        }
 
         &--title {
             display: flex;

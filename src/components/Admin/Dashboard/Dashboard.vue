@@ -18,6 +18,7 @@
 
 <script>
 import axios from 'axios'
+import { baseApiUrl } from '@/global'
 
 import DashboardHeader from './DashboardHeader'
 import DashboardTableCard from './DashboardTableCard'
@@ -51,7 +52,7 @@ export default {
     },
     methods: {
         getTableData() {
-            const url = 'https://backend-ucc.herokuapp.com/actions'
+            const url = `${baseApiUrl}/actions`
             axios.get(url).then(res => {
                 this.values = res.data.map(el => {
                     const fields = {}
@@ -68,8 +69,9 @@ export default {
         },
         changeCardSelected(card) {
             /* eslint-disable no-param-reassign */
-            /* eslint-disable no-return-assign */
-            this.cards.forEach(el => (el.selected = false))
+            this.cards.forEach(el => {
+                el.selected = false
+            })
             card.selected = true
         }
     },

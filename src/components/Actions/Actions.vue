@@ -12,17 +12,14 @@
             :windowSize="2"
             :paginationFactor="405"
         >
-            <ActionCard
-                v-for="action in actions"
-                :key="action.id"
-                :action="action"
-            />
+            <ActionCard v-for="action in actions" :key="action.id" :action="action" />
         </Carrousel>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { baseApiUrl } from '@/global'
 
 import Carrousel from '../Carrousel/Carrousel.vue'
 import SectionTitle from '../utils/SectionTitle.vue'
@@ -38,9 +35,9 @@ export default {
     computed: {},
     methods: {
         getActions() {
-            const url = 'https://backend-ucc.herokuapp.com/actions'
+            const url = `${baseApiUrl}/actions`
             axios.get(url).then(res => {
-                /* Pega apenas as 6 últimas ações */
+                /* Pega apenas as 6 últimas ações para o carrossel */
                 this.actions = res.data.slice(0, 6)
             })
         }
@@ -54,7 +51,6 @@ export default {
 <style lang="scss" scoped>
 .actions {
     background-color: #fff;
-    /* min-height: 70vh; */
 }
 
 .action-card {

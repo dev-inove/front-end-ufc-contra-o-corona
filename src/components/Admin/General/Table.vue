@@ -8,14 +8,14 @@
             :key="values.indexOf(value)"
             :class="{ dark: values.indexOf(value) % 2 === 0 }"
         >
-            <td v-for="a in value" :key="a">{{ a }}</td>
-            <td style="padding: 0 1rem;">
+            <td v-for="field in value" :key="field">{{ field }}</td>
+            <td v-if="editFunction" style="padding: 0 1rem;">
                 <svg class="icon edit">
                     <use xlink:href="@/assets/svg/sprites.svg#pencil" />
                 </svg>
             </td>
-            <td style="padding: 0 1rem;">
-                <svg class="icon delete" @click="deleteButtonClick">
+            <td v-if="deleteFunction" style="padding: 0 1rem;">
+                <svg class="icon delete" @click="deleteFunction(value.id)">
                     <use xlink:href="@/assets/svg/sprites.svg#delete" />
                 </svg>
             </td>
@@ -34,11 +34,11 @@ export default {
             type: Array,
             required: false
         },
-        editButtonClick: {
+        editFunction: {
             type: Function,
             required: false
         },
-        deleteButtonClick: {
+        deleteFunction: {
             type: Function,
             required: false
         }

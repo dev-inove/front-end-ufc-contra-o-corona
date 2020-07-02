@@ -1,14 +1,9 @@
 <template>
-    <div
-        class="action-page"
-        :theme="this.$store.state.dark ? 'dark' : 'light'"
-    >
+    <div class="action-page" :theme="this.$store.state.dark ? 'dark' : 'light'">
         <Navbar />
         <div class="post pad-sm">
             <h1 class="post__title">{{ action.title }}</h1>
-            <h2 class="post__subtitle">
-                {{ action.subtitle }}
-            </h2>
+            <h2 class="post__subtitle">{{ action.subtitle }}</h2>
 
             <div class="post__info">
                 <div class="post__info--headers">
@@ -18,24 +13,16 @@
                 </div>
                 <div class="post__info--social">
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#facebook-1"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#facebook-1" />
                     </svg>
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#twitter-1"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#twitter-1" />
                     </svg>
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#whatsapp"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#whatsapp" />
                     </svg>
                     <svg class="social-icon">
-                        <use
-                            xlink:href="@/assets/svg/sprites.svg#pinterest"
-                        />
+                        <use xlink:href="@/assets/svg/sprites.svg#pinterest" />
                     </svg>
                 </div>
             </div>
@@ -44,15 +31,14 @@
 
             <SwitchLight />
 
-            <div>PHOTO</div>
-
+            <!-- <div>PHOTO</div> -->
             <div class="post__content" v-html="action.content"></div>
 
-            <SectionTitle
-                title="Recomendadas para você"
-            ></SectionTitle>
+            <SectionTitle title="Recomendadas para você"></SectionTitle>
+
             <div class="post__recommended">
                 <ActionCard
+                    style="margin: 0 1rem;"
                     v-for="rec in recommended"
                     :key="rec.id"
                     :action="rec"
@@ -65,6 +51,7 @@
 
 <script>
 import axios from 'axios'
+import { baseApiUrl } from '@/global'
 
 import Navbar from '../Header/Navbar.vue'
 import SectionTitle from '../utils/SectionTitle.vue'
@@ -88,17 +75,17 @@ export default {
     },
     methods: {
         loadAction() {
-            const url = `https://backend-ucc.herokuapp.com/actions/${this.$route.params.id}`
+            const url = `${baseApiUrl}/actions/${this.$route.params.id}`
             axios.get(url).then(res => {
                 this.action = res.data
             })
         },
         loadRecommended() {
-            const url = 'https://backend-ucc.herokuapp.com/actions'
+            const url = `${baseApiUrl}/actions`
             axios.get(url).then(res => {
-                this.recommended = res.data.filter(
-                    el => el.id !== this.action.id
-                )
+                this.recommended = res.data
+                    .filter(el => el.id !== this.$route.params.id)
+                    .splice(0, 3)
             })
         }
     },
@@ -196,9 +183,7 @@ export default {
     }
 
     &__recommended {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        display: flex;
     }
 }
 </style>

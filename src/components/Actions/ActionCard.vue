@@ -1,23 +1,10 @@
 <template>
-    <div
-        class="action-card"
-        :theme="this.$store.state.dark ? 'dark' : 'light'"
-    >
-        <img
-            class="action-card__image"
-            src="../../assets/img/covid-mask.jpg"
-            alt="post-image"
-        />
+    <div class="action-card" :theme="this.$store.state.dark ? 'dark' : 'light'">
+        <img class="action-card__image" :src="action.image_url" alt="post-image" />
         <div class="action-card__text">
             <h1 class="action-card__text--title">{{ action.title }}</h1>
-            <h2 class="action-card__text--sub">
-                {{ action.subtitle }}
-            </h2>
-            <a
-                class="action-card__text--link"
-                :href="`/actions/${action.id}`"
-                >Saiba mais →</a
-            >
+            <h2 class="action-card__text--sub">{{ action.subtitle }}</h2>
+            <a class="action-card__text--link" :href="`/actions/${action.id}`">Saiba mais →</a>
         </div>
     </div>
 </template>

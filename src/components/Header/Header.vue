@@ -1,6 +1,5 @@
 <template>
     <header class="header">
-        <Navbar />
         <div class="header__title pad-sm">
             <h1>
                 UFC Contra
@@ -22,12 +21,12 @@
 <script>
 import axios from 'axios'
 
-import Navbar from './Navbar'
+// import Navbar from './Navbar'
 import Box from './Box'
 
 export default {
     name: 'Header',
-    components: { Navbar, Box },
+    components: { Box },
     data() {
         return {
             stats: {}

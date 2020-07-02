@@ -5,64 +5,55 @@
             <ActionButton v-if="mode === 'list'" title="Adicionar" :action="addNewAction" />
         </div>
 
-        <!--List -->
+        <!--Mode: List -->
         <div
             v-if="mode === 'list'"
             :class="{ centralize: !values.length }"
-            class="my-actions__main"
+            class="my-actions__list"
         >
-            <svg v-if="!values.length" class="not-found">
+            <svg v-if="!values.length" class="my-actions__list--no-data-icon">
                 <use xlink:href="@/assets/svg/no_data.svg#no-data" />
             </svg>
-            <Table v-else :titles="titles" :values="values" :deleteButtonClick />
+            <Table v-else :titles="titles" :values="values" :deleteFunction="deleteAction" />
         </div>
 
-        <!--Register new action-->
-        <div v-if="mode === 'content'">
+        <!--Mode: Register new action-->
+        <div class="my-actions__content" v-if="mode === 'content'">
             <!--Step 1-->
-            <div v-if="step === 1" style="display: flex; flex-direction: column;">
-                <label class="labelzinho" for="title">Titulo da ação</label>
+            <div v-if="step === 1" class="my-actions__content--step">
+                <label for="title">Titulo da ação</label>
                 <input
-                    class="inputzinho"
                     type="text"
                     id="title"
                     placeholder="Ex: Confecção de máscaras"
                     v-model="action.title"
                 />
 
-                <label for="subtitle" class="labelzinho">Subtítulo</label>
+                <label for="subtitle">Subtítulo</label>
                 <input
-                    class="inputzinho"
                     type="text"
                     id="subtitle"
                     placeholder="Ex: Postos de saúde precisam de máscaras"
                     v-model="action.subtitle"
                 />
 
-                <label class="labelzinho">Conteúdo</label>
+                <label>Conteúdo</label>
                 <VueEditor v-model="action.content" placeholder="Informe o Post da Ação..." />
             </div>
+
             <!--Step 2-->
-            <div v-if="step === 2" style="display: flex; flex-direction: column;">
-                <label for="imageUrl" class="labelzinho">URL da Imagem</label>
+            <div v-if="step === 2" class="my-actions__content--step">
+                <label for="imageUrl">URL da Imagem</label>
                 <input
                     type="text"
-                    class="inputzinho"
                     id="imageUrl"
                     placeholder="Informe a URL da imagem do artigo..."
                     v-model="action.image_url"
                 />
-
-                <label for="cars" class="labelzinho">Autor:</label>
-
-                <select name="authors" id="cars">
-                    <option value="volvo">Vito</option>
-                    <option value="saab">Arley</option>
-                    <option value="mercedes">Lune</option>
-                    <option value="audi">Sonic</option>
-                </select>
             </div>
-            <div style="display: flex; margin: 1rem 0;">
+
+            <!--Bottom -->
+            <div class="my-actions__bottom-container">
                 <ActionButton
                     :title="previousStepButtonTitle"
                     :action="previousStepAction"
@@ -155,7 +146,7 @@ export default {
     },
     methods: {
         loadUserActions() {
-            const url = 'https://backend-ucc.herokuapp.com/actions'
+            const url = `${baseApiUrl}/actions`
             axios.get(url).then(res => {
                 this.values = res.data
                     .filter(
@@ -207,7 +198,18 @@ export default {
             }
         },
         editAction() {},
-        deleteAction() {}
+        deleteAction(id) {
+            const url = `${baseApiUrl}/actions/${id}`
+            axios
+                .delete(url)
+                .then(() => {
+                    console.log('deleted')
+                    this.loadUserActions()
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
     },
     mounted() {
         this.loadUserActions()
@@ -221,27 +223,6 @@ export default {
     margin-bottom: auto;
 }
 
-.not-found {
-    height: 262px;
-    width: 379px;
-}
-
-.inputzinho {
-    background-color: #eeeeee;
-    border: none;
-    font-size: 1.4rem;
-    font-family: 'Roboto';
-    color: rgba($black, 0.8);
-    padding: 1rem 1.5rem;
-    border-radius: 0.7rem;
-}
-
-.labelzinho {
-    margin: 1rem 0;
-    font-size: 1.6rem;
-    color: $black;
-}
-
 .my-actions {
     display: flex;
     flex-direction: column;
@@ -253,10 +234,44 @@ export default {
         margin-bottom: 2rem;
     }
 
-    &__main {
+    &__list {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        &--no-data-icon {
+            height: 262px;
+            width: 379px;
+        }
+    }
+
+    /* Content Form */
+    &__content {
+        &--step {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 1rem 0;
+            font-size: 1.6rem;
+            color: $black;
+        }
+
+        input[type*='text'] {
+            background-color: #eeeeee;
+            border: none;
+            font-size: 1.4rem;
+            font-family: 'Roboto';
+            color: rgba($black, 0.8);
+            padding: 1rem 1.5rem;
+            border-radius: 0.7rem;
+        }
+    }
+
+    &__bottom-container {
+        display: flex;
+        margin: 1rem 0;
     }
 }
 </style>

@@ -7,6 +7,8 @@
             alt="logo-combate-ao-covid-19"
         />
         <img v-else src="@/assets/svg/logo_white.svg" alt="logo-combate-ao-covid-19" />
+
+        <!--Desktop Menu -->
         <ul class="navbar__list">
             <li class="active">Home</li>
             <li>Ações</li>
@@ -16,8 +18,13 @@
         </ul>
         <div class="navbar__actions">
             <a>Cadastrar</a>
-            <button @click="$router.push('dashboard')">Login</button>
+            <button @click="$router.push('/dashboard')">Login</button>
         </div>
+
+        <!--Mobile Hamburger Menu -->
+        <svg class="navbar__menu">
+            <use xlink:href="@/assets/svg/sprites.svg#menu-1" />
+        </svg>
     </nav>
 </template>
 
@@ -70,7 +77,30 @@ export default {
     z-index: 1000;
     width: 100%;
 
+    img {
+        cursor: pointer;
+    }
+
+    &__menu {
+        display: none;
+        height: 2.4rem;
+        width: 2.4rem;
+        fill: #66288e;
+
+        @include respond(phone) {
+            display: block;
+        }
+    }
+
     &__list {
+        @include respond(tab-port) {
+            border: none;
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
+
         display: flex;
         flex: 1;
         justify-content: flex-end;
@@ -97,6 +127,15 @@ export default {
     }
 
     &__actions {
+        @include respond(tab-land) {
+            display: flex;
+            align-items: center;
+        }
+
+        @include respond(tab-port) {
+            display: none;
+        }
+
         button {
             background-color: var(--primary-purple);
             color: var(--white-1);

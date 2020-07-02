@@ -1,31 +1,38 @@
 <template>
     <div class="user-card">
         <div class="user-card__top">
-            <h1>Victor Camargo</h1>
-            <h2>Campus de Quixadá</h2>
+            <h1>{{ user.fullname }}</h1>
+            <h2>--</h2>
             <hr />
         </div>
         <div class="user-card__bottom">
             <div class="user-card__bottom--attr">
                 <h2>Ações</h2>
-                <h3>3 Unidades</h3>
+                <h3>--</h3>
             </div>
 
             <div class="user-card__bottom--attr">
                 <h2>Produções</h2>
-                <h3>1 Unidades</h3>
+                <h3>--</h3>
             </div>
 
             <div class="user-card__bottom--attr">
                 <h2>Necessidades</h2>
-                <h3>2 Unidades</h3>
+                <h3>--</h3>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {}
+export default {
+    props: {
+        user: {
+            type: Object,
+            required: true
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>

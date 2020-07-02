@@ -2,19 +2,36 @@
     <div class="admin-users">
         <AdminPageTitle title="Todos Usuários" />
         <div class="card-container">
-            <UserCard />
-            <UserCard />
-            <UserCard />
+            <UserCard :key="user.email" v-for="user in users" :user="user" />
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { baseApiUrl } from '@/global'
+
 import UserCard from './UserCard'
 import AdminPageTitle from '../General/AdminPageTitle'
 
 export default {
-    components: { UserCard, AdminPageTitle }
+    components: { UserCard, AdminPageTitle },
+    data() {
+        return {
+            users: []
+        }
+    },
+    methods: {
+        loadUsers() {
+            const url = `${baseApiUrl}/users`
+            axios.get(url).then(res => {
+                this.users = res.data
+            })
+        }
+    },
+    mounted() {
+        this.loadUsers()
+    }
 }
 </script>
 
