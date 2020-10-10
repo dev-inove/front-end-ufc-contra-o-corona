@@ -1,32 +1,3 @@
-<template>
-    <nav class="navbar pad-sm" :theme="this.$store.state.dark ? 'dark' : 'light'">
-        <img
-            v-if="!this.$store.state.dark"
-            @click="$router.push('/')"
-            src="@/assets/svg/logo_purple.svg"
-            alt="logo-combate-ao-covid-19"
-        />
-        <img v-else src="@/assets/svg/logo_white.svg" alt="logo-combate-ao-covid-19" />
-
-        <!--Desktop Menu -->
-        <ul class="navbar__list">
-            <li class="active">Home</li>
-            <li>Ações</li>
-            <li>Produções</li>
-            <li>Necessidades</li>
-            <li>Contatos</li>
-        </ul>
-        <div class="navbar__actions">
-            <a>Cadastrar</a>
-            <button @click="$router.push('/dashboard')">Login</button>
-        </div>
-
-        <!--Mobile Hamburger Menu -->
-        <svg class="navbar__menu">
-            <use xlink:href="@/assets/svg/sprites.svg#menu-1" />
-        </svg>
-    </nav>
-</template>
 
 <script>
 export default {
