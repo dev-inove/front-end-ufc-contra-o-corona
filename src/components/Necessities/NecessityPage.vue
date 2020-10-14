@@ -15,7 +15,9 @@
 import Navbar from '../Header/Navbar.vue'
 import Footer from '../Footer/Footer.vue'
 
+
 export default {
+    name: 'NecessityPage',
     components: { Navbar, Footer }
 }
 </script>

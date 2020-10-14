@@ -21,6 +21,7 @@ import SectionTitle from '../utils/SectionTitle.vue'
 import NecessityCard from './NecessityCard.vue'
 
 export default {
+    name: 'Necessities',
     components: { SectionTitle, Carrousel, NecessityCard },
     data() {
         return {
